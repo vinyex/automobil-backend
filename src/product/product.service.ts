@@ -21,7 +21,7 @@ export class ProductService {
     if (merk) {
       return await this.productRepository
         .createQueryBuilder('product')
-        .where('product.merk like :merk', { merk: `%${merk}%` })
+        .where('LOWER(product.merk) like LOWER(:merk)', { merk: `%${merk}%` })
         .getMany();
     }
 
